@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>World Dominion</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>게임 시작 테스트</h1>
-  <button onclick="startGame()">버튼</button>
+
+  <!-- MENU -->
+  <div id="menu">
+    <h1>🌍 World Dominion</h1>
+    <p>나라를 선택하고 세계를 지배하라</p>
+
+    <select id="countrySelect">
+      <option value="Korea">Korea</option>
+      <option value="USA">USA</option>
+      <option value="Japan">Japan</option>
+      <option value="Germany">Germany</option>
+    </select>
+
+    <br><br>
+    <button onclick="startGame()">게임 시작</button>
+  </div>
+
+  <!-- GAME -->
+  <div id="game" style="display:none;">
+    <h1>전략 화면</h1>
+
+    <h2 id="countryName"></h2>
+
+    <p>💰 돈: <span id="money">0</span></p>
+    <p>⚔️ 군사력: <span id="power">10</span></p>
+
+    <button onclick="earnMoney()">돈 생산</button>
+    <button onclick="attack()">전쟁</button>
+    <button onclick="upgrade()">군사 강화</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
