@@ -3,7 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>World Dominion</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0f0f0f;
+      color: white;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    select {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    #game {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -25,7 +50,7 @@
   </div>
 
   <!-- GAME -->
-  <div id="game" style="display:none;">
+  <div id="game">
     <h1>전략 화면</h1>
 
     <h2 id="countryName"></h2>
@@ -38,6 +63,56 @@
     <button onclick="upgrade()">군사 강화</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    let money = 0;
+    let power = 10;
+    let country = "";
+
+    function startGame() {
+      country = document.getElementById("countrySelect").value;
+
+      document.getElementById("menu").style.display = "none";
+      document.getElementById("game").style.display = "block";
+
+      document.getElementById("countryName").innerText = "국가: " + country;
+
+      updateUI();
+    }
+
+    function earnMoney() {
+      money += 10;
+      updateUI();
+    }
+
+    function upgrade() {
+      if (money >= 20) {
+        money -= 20;
+        power += 5;
+      } else {
+        alert("돈 부족");
+      }
+      updateUI();
+    }
+
+    function attack() {
+      let enemy = Math.floor(Math.random() * 20);
+
+      if (power > enemy) {
+        money += 30;
+        alert("승리!");
+      } else {
+        money -= 10;
+        alert("패배...");
+      }
+
+      updateUI();
+    }
+
+    function updateUI() {
+      document.getElementById("money").innerText = money;
+      document.getElementById("power").innerText = power;
+    }
+  </script>
+
 </body>
 </html>
